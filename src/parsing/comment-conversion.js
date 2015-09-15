@@ -14,8 +14,8 @@ var convertAssertionType = function(type) {
 
 var extractTestDetails = function(parsedAssertions) {
   var assertionParts;
-  return parsedAssertions.map(function(assertion) {
-    assertionParts = extractValues(assertion, '{assertionInput} {assertionType} {assertionOutput} ({assertionMessage})');
+  // return parsedAssertions.map(function(assertion) {
+    assertionParts = extractValues(parsedAssertions, '{assertionInput} {assertionType} {assertionOutput} ({assertionMessage})');
     try {
       assertionParts.assertionType = convertAssertionType(assertionParts.assertionType);
       if (assertionParts.assertionType === undefined) {
@@ -25,7 +25,7 @@ var extractTestDetails = function(parsedAssertions) {
       assertionParts = {error: 'Assertion syntax error, please fix assertion syntax.'};
     }
     return assertionParts;
-  });
+  // });
 };
 
 module.exports = {

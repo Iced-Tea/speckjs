@@ -24,6 +24,7 @@
 */
 var R = require('ramda');
 var acorn = require('acorn/dist/acorn_csp.js');
+var extract = require('./comment-conversion.js').extractTestDetails;
 var acornOptions = {locations: true, onComment: onComment};
 var tests = [];
 
@@ -53,7 +54,7 @@ function onComment(isBlock, text, _s, _e, sLoc, eLoc) {
   }
 
   function addAssertionToTest(assertion, test) {
-    test.assertions.push(assertion);
+    test.assertions.push(extract(assertion));
     test.loc.endLine = eLoc.line;
     return test;
   }

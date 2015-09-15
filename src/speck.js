@@ -20,12 +20,12 @@ var build = function build(file, options) {
   var tests = comments.parse(file.content).tests;
   var testsReadyToAssemble = tests.map(function(test) {
     var testDetails;
-    if (test.assertions.length) {
-      testDetails = extract.extractTestDetails(test.assertions);
-    } else {
-      testDetails = '';
-    }
-    var utilData = tempUtils.prepDataForTemplating(options.testFW, file.name, test, testDetails);
+    // if (test.assertions.length) {
+    //   testDetails = extract.extractTestDetails(test.assertions);
+    // } else {
+    //   testDetails = '';
+    // }
+    var utilData = tempUtils.prepDataForTemplating(options.testFW, file.name, test, test.assertions);
     var jsTestString;
     if (options.testFW === 'jasmine') {
       jsTestString = tempUtils.addTestDataToBaseTemplateJasmine(utilData, jasmineTemps.base);
